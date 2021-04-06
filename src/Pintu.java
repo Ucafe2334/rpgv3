@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 //belum menggunakan inheritance, idealnya turunan dari Item
 
-public class Pintu {
-
-    private ArrayList<String> arrAksi = new ArrayList<>();
-    private GameInfo objGameInfo;
+public class Pintu extends GameObj{
 
     //constrcutor
     public Pintu() {
@@ -13,11 +10,11 @@ public class Pintu {
         arrAksi.add("Coba buka pintu");
     }
 
+
+    @Override
     public void prosesAksi(int subPil) {
-        //1: deskripsikan
-        //2: buka pintu
         if (subPil==1) {
-            System.out.println("Pintu berwarna merah dengan tulisan 'EXIT' di atas ");
+            System.out.println("Pintu berwarna merah dengan tulisan 'EXIT' di atas");
         } else if (subPil==2) {
             //cek apakah mempunyai kunci
             if (objGameInfo.getObjPlayer().cariItem("Kunci")) {
@@ -30,13 +27,4 @@ public class Pintu {
             }
         }
     }
-
-    public void setObjGameInfo(GameInfo objGameInfo) {
-        this.objGameInfo = objGameInfo;
-    }
-
-    public ArrayList<String> getAksi() {
-        return arrAksi;
-    }
-
 }

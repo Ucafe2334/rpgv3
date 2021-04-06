@@ -1,36 +1,19 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import static java.lang.String.format;
-
-public class Player {
+public class Player extends GameObj {
     //item defulat yang dimiliki player
-    private Item objCincin = new Item("Cincin Emas");
-    private ArrayList<Item> arrItem;
-    private Ruangan ruanganAktif;  //ruangan tempat player saat ini berada
-    private int kesehatan = 100;
-    private String nama = "budiwati";
-    private Scanner sc = new Scanner(System.in);
-    private GameInfo objGameInfo;
-
-    public int getKesehatan() {
-        return kesehatan;
-    }
-
-    public void setKesehatan(int kesehatan) {
-        this.kesehatan = kesehatan;
-    }
-
-    public GameInfo getObjGameInfo() {
-        return objGameInfo;
-    }
+    private final Item objCincin = new Item("Cincin Emas");
+    private int kesehatan;
 
     public void setObjGameInfo(GameInfo objGameInfo) {
         this.objGameInfo = objGameInfo;
         objCincin.setObjGameInfo(objGameInfo);
     }
 
+    //constructor
     public Player() {
+        nama = "budiwati";
+        kesehatan = 100;
         arrItem = new ArrayList<>();
         objCincin.setDeskripsi("Cincin emas bertuliskan suatu kalimat..");
         arrItem.add(objCincin);
@@ -56,16 +39,6 @@ public class Player {
         System.out.println("Kesehatan Player:"+kesehatan);
     }
 
-    public void printItem() {
-        System.out.println("Item milik player");
-        int cc = 0;
-        for (Item objItem:arrItem) {
-            cc++;
-            System.out.printf("%d. %s%n",cc,objItem.getNama());
-            System.out.println(objItem.getDeskripsi());
-        }
-    }
-
     // hapus item di ruangan berdasarkan namanya
     // digunakan saat suatu item diambil oleh player misalnya
     public void hapusItem(Item objItem) {
@@ -86,8 +59,10 @@ public class Player {
             urutPil++;
             subPil = 0;   //sistem penomorannya 11  12  13 dst
             System.out.println(objItem.getNama());
+
             //ambil pilihannya
             ArrayList <String> arrPil = objItem.getAksi();
+
             //print pilihan
             for (String strPil:arrPil) {
                 subPil++;
@@ -117,22 +92,5 @@ public class Player {
             Item objItemPilih = arrItem.get(pil-1);
             objItemPilih.prosesAksi(subPil); //aksi item
         }
-//        System.out.println("2. Item milik player");
-//        System.out.print("Pilihan anda?");
-//        int pil = sc.nextInt();
-//        System.out.println("--");
-//        if (pil==1) {
-//            printPlayer();
-//        } else if (pil==2) {
-//            printItem();
-//        }
     }
-
-    public void setRuanganAktif(Ruangan ruanganAktif) {
-        this.ruanganAktif = ruanganAktif;
-    }
-    public Ruangan getRuanganAktif() {
-        return ruanganAktif;
-    }
-
 }

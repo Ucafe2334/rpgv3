@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class GameEngine {
+public class GameEngine extends Game {
     // user interface game
+    protected GameInfo objGameInfo = new GameInfo();
+
+    //inputan player
     Scanner sc = new Scanner(System.in);
-    Player objPlayer = new Player();
-    Ruangan objRuangan = new Ruangan(); //cuma satu ruangan
-    GameInfo objGameInfo = new GameInfo();
 
     public static void main(String[] args) {
         GameEngine objGameEngine;
@@ -36,15 +36,23 @@ public class GameEngine {
         System.out.print("Pilihan anda?");
         int pil = sc.nextInt();
         System.out.println("--");
-        if (pil==3) {
-            objGameInfo.setGameOver(true); //keluar
-        } else if (pil==1) {
-            objRuangan.pilihanAksi(); //
-        } else if (pil==2) {
-            objPlayer.pilihanAksi();
+        switch (pil){
+            case 1:
+                objRuangan.pilihanAksi();
+                break;
+            case 2:
+                objPlayer.pilihanAksi();
+                break;
+            case 3:
+                objGameInfo.setGameOver(true); //keluar
+                break;
+            default:
+                System.out.println("input tidak dikenal");
         }
     }
 
+    /*method untuk memulai permainan, dimana selama getGameover bernilai
+    * false, maka permainan akan terus berlanjut*/
     public void mulai() {
         while (!objGameInfo.getGameOver()) {
             aksi();

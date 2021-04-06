@@ -3,15 +3,11 @@ import java.util.Scanner;
 
 import static java.lang.String.format;
 
-public class Ruangan {
+public class Ruangan extends GameObj{
 
     private Pintu objPintu;
-    private NPC objNPC; 
+    private NPC objNPC;
     private Item  objRoti;
-    private ArrayList<Item> arrItem = new ArrayList<>();
-    private String deskripsi;
-    private GameInfo objGameInfo;
-    private Scanner sc = new Scanner(System.in);
 
 
     //objgame juga diset pada pintu dan item2
@@ -115,12 +111,4 @@ public class Ruangan {
     public void addItem(Item objItem) {
         arrItem.add(objItem);
     }
-
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
 }
